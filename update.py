@@ -1,20 +1,46 @@
-#!/usr/bin/python
+#/usr/bin/python
 
 from os import system
+import sys
 
-#runs aptitude update
-print "updating cache please wait"
-system("apt update")
+def refresh():
+	print "updateing cache please wait..."
+	system("apt update")
+def list():
+	system("apt list --upgradeable")
+	listan = raw_input("Upgrade all packages? ")
+	if "y" in listan:
+		upgrade()
 
-#asks to upgrade packages
-update = raw_input("upgrade all packages?")
-
-if ("y" in update):
-	#upgrades packages
-	print "upgrading packages please wait"
+def upgrade():
 	system("apt upgrade -y")
-	print "done"
-	system("exit")
+
+refresh()
+
+if len(sys.argv) !=2:
+
+        answer = raw_input("Upgrade all packages? ")
+
+        if "y" in answer:
+                upgrade()
+        elif answer == "list":
+                list()
+
+elif "y" in sys.argv[1]:
+	upgrade()
+elif sys.argv[1] == "list":
+	list()
+elif len(sys.argv) !=2:
+
+	answer = raw_input("Upgrade all packages? ")
+
+	if "y" in answer:
+		upgrade()
+	elif answer == "list":
+		list()
+		listan = raw_input("Upgrade all packages? ")
+		if "y" in listan:
+			upgrade()
 else:
-	exit(0)
+	system("exit")
 
