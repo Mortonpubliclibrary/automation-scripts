@@ -1,4 +1,5 @@
 #!/bin/bash
+#run me to install debin
 echo "#for debin" >> ~/.bashrc
 echo "alias debin='debinstall.sh'
 sudo apt isntall gdebi
